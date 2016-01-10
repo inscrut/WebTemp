@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     TCPClient client;
     Thread getP;
-    String answer = "T:0:H:0:#";
+    static String answer = "T:0:H:0:#";
+    String buffer = "T:0:H:0:#";
     Button btnRefresh;
     Button btnSet;
     TextView tv;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText port;
     private boolean giveme = true;
 
-    private SharedPreferences mSettings;
+    SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     if(giveme && client != null){
                         client.Connect();
                         client.Send("GET");
-                        answer = client.Read();
+                        buffer = client.Read();
                         client.Disconnect();
                         giveme = false;
                     }
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 client = new TCPClient(mSettings.getString("IP", "127.0.0.1"), mSettings.getInt("PORT", 2000));
                 giveme = true;
-                tv.setText(answer);
-                String[] bu = answer.split(":");
+                String[] bu = buffer.split(":");
+                tv.setText(buffer);
                 if (check_p(bu)) {
                     temp.setText("Температура: " + bu[1]);
                     hum.setText("Влажность: " + bu[3]);
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             if(chk[0].equals("T")){
                 if(chk[2].equals("H")){
                     if(chk[4].equals("#")){
+                        answer = buffer;
                         return true;
                     }
                 }
