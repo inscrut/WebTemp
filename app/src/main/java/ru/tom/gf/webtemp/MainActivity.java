@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
     TCPClient client;
     Thread getP;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextView hum;
     EditText ip;
     EditText port;
-    private boolean giveme = true;
+    static boolean giveme = true;
 
     SharedPreferences mSettings;
 

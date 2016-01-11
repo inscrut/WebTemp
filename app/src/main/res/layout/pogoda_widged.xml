@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#09C"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#09C"
+        android:contentDescription="@string/appwidget_text"
+        android:text="Погода"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Температура"
+        android:id="@+id/tv_temp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/appwidget_text"
+        android:layout_alignLeft="@+id/appwidget_text"
+        android:layout_alignStart="@+id/appwidget_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Влажность"
+        android:id="@+id/tv_hum"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/tv_temp"
+        android:layout_alignLeft="@+id/tv_temp"
+        android:layout_alignStart="@+id/tv_temp" />
+
+</RelativeLayout>

@@ -27,6 +27,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/pogoda_widged_info" />
         </receiver>
+
+        <service
+            android:name=".WidgetUpd"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
